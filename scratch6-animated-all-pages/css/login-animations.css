@@ -1,0 +1,363 @@
+/* ================================================================
+   Login Page — Lottie-Style Animations
+   Drop-in addition to screens.css — no existing styles modified
+   ================================================================ */
+
+/* ── 1. Card entrance ──────────────────────────────────────────── */
+.login-card {
+  animation: laCardIn 0.7s cubic-bezier(0.22, 0.9, 0.36, 1) both !important;
+}
+@keyframes laCardIn {
+  from { opacity: 0; transform: translateY(44px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0)    scale(1);    }
+}
+
+/* ── 2. Floating particles on login-screen bg ─────────────────── */
+.la-particle {
+  position: absolute;
+  color: rgba(255, 255, 255, 0.25);
+  font-weight: bold;
+  pointer-events: none;
+  animation: laParticleRise linear infinite;
+}
+@keyframes laParticleRise {
+  0%   { transform: translateY(0)      scale(1);    opacity: 0;   }
+  8%   { opacity: 0.9; }
+  88%  { opacity: 0.5; }
+  100% { transform: translateY(-115vh) scale(1.35); opacity: 0;   }
+}
+
+/* ── 3. Glowing orbs behind left panel ────────────────────────── */
+.la-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(70px);
+  animation: laOrbDrift ease-in-out infinite alternate;
+}
+.la-orb-1 {
+  width: 280px; height: 280px;
+  background: radial-gradient(circle, rgba(255,255,255,0.18) 0%, transparent 70%);
+  top: -60px; left: -60px;
+  animation-duration: 7s;
+}
+.la-orb-2 {
+  width: 220px; height: 220px;
+  background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%);
+  bottom: -50px; right: -40px;
+  animation-duration: 9s; animation-delay: -3.5s;
+}
+@keyframes laOrbDrift {
+  from { transform: translate(0, 0)      scale(1);    }
+  to   { transform: translate(22px, 28px) scale(1.08); }
+}
+
+/* ── 4. Left panel grid overlay pulse ─────────────────────────── */
+.la-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+  background-size: 38px 38px;
+  pointer-events: none;
+  animation: laGridFade 6s ease-in-out infinite alternate;
+}
+@keyframes laGridFade {
+  from { opacity: 0.6; }
+  to   { opacity: 1;   }
+}
+
+/* ── 5. Lottie-style SVG illustration wrapper ─────────────────── */
+.la-illustration {
+  position: relative;
+  z-index: 2;
+  width: 210px;
+  height: 210px;
+  margin: 0 auto 10px;
+  flex-shrink: 0;
+}
+
+/* ── 5a. Desk scene — character body bob ──────────────────────── */
+.la-char {
+  animation: laCharBob 3s ease-in-out infinite;
+  transform-origin: 50% 100%;
+}
+@keyframes laCharBob {
+  0%,100% { transform: translateY(0);   }
+  45%     { transform: translateY(-4px);}
+}
+
+/* ── 5b. Character head tilt ──────────────────────────────────── */
+.la-head {
+  animation: laHeadTilt 4s ease-in-out infinite;
+  transform-origin: 50% 100%;
+}
+@keyframes laHeadTilt {
+  0%,100% { transform: rotate(0deg);  }
+  30%     { transform: rotate(-5deg); }
+  65%     { transform: rotate(4deg);  }
+}
+
+/* ── 5c. Monitor screen flicker ───────────────────────────────── */
+.la-screen {
+  animation: laScreenFlicker 5s ease-in-out infinite;
+}
+@keyframes laScreenFlicker {
+  0%,100% { opacity: 1;   }
+  91%     { opacity: 1;   }
+  92%     { opacity: 0.5; }
+  93%     { opacity: 1;   }
+  95%     { opacity: 0.7; }
+  96%     { opacity: 1;   }
+}
+
+/* ── 5d. Code lines typing in ─────────────────────────────────── */
+.la-code-line {
+  transform-origin: left center;
+  animation: laCodeType 3.2s ease-in-out infinite;
+}
+.la-code-line:nth-child(1) { animation-delay: 0s;    }
+.la-code-line:nth-child(2) { animation-delay: 0.38s; }
+.la-code-line:nth-child(3) { animation-delay: 0.76s; }
+.la-code-line:nth-child(4) { animation-delay: 1.14s; }
+@keyframes laCodeType {
+  0%,6%   { transform: scaleX(0); opacity: 0; }
+  22%,88% { transform: scaleX(1); opacity: 1; }
+  100%    { transform: scaleX(1); opacity: 1; }
+}
+
+/* ── 5e. Blinking cursor ──────────────────────────────────────── */
+.la-cursor {
+  animation: laCursorBlink 0.85s step-end infinite;
+}
+@keyframes laCursorBlink {
+  0%,100% { opacity: 1; }
+  50%     { opacity: 0; }
+}
+
+/* ── 5f. Floating coffee cup steam ───────────────────────────── */
+.la-steam {
+  animation: laSteamRise 2s ease-in-out infinite;
+  transform-origin: center bottom;
+}
+.la-steam:nth-child(2) { animation-delay: 0.35s; }
+.la-steam:nth-child(3) { animation-delay: 0.70s; }
+@keyframes laSteamRise {
+  0%   { transform: translateY(0)   scaleX(1);   opacity: 0;   }
+  15%  { opacity: 0.7; }
+  80%  { opacity: 0.3; }
+  100% { transform: translateY(-12px) scaleX(0.5); opacity: 0; }
+}
+
+/* ── 5g. Notification ping dot ───────────────────────────────── */
+.la-ping {
+  animation: laPing 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+@keyframes laPing {
+  0%   { transform: scale(0.95); opacity: 1;   }
+  75%  { transform: scale(1.8);  opacity: 0;   }
+  100% { transform: scale(0.95); opacity: 0;   }
+}
+
+/* ── 5h. Stars / sparkles around desk ─────────────────────────── */
+.la-star {
+  animation: laStarTwinkle ease-in-out infinite alternate;
+}
+.la-star:nth-child(1) { animation-duration: 1.6s; animation-delay: 0s;    }
+.la-star:nth-child(2) { animation-duration: 2.1s; animation-delay: -0.7s; }
+.la-star:nth-child(3) { animation-duration: 1.9s; animation-delay: -1.3s; }
+@keyframes laStarTwinkle {
+  from { opacity: 0.2; transform: scale(0.7) rotate(0deg);   }
+  to   { opacity: 1;   transform: scale(1.2) rotate(20deg);  }
+}
+
+/* ── 6. Floating badge pills ──────────────────────────────────── */
+.la-badge {
+  position: absolute;
+  background: rgba(255,255,255,0.13);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.24);
+  border-radius: 50px;
+  padding: 6px 14px 6px 10px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+  z-index: 4;
+  animation: laBadgeFloat ease-in-out infinite alternate;
+  letter-spacing: 0.02em;
+}
+.la-badge-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.la-badge.b-top    { top: 16px;    left: 12px;  animation-duration: 3.4s; }
+.la-badge.b-mid    { top: 50%;     right: 10px; animation-duration: 4.1s; animation-delay: -1.8s; transform: translateY(-50%); }
+.la-badge.b-bottom { bottom: 22px; left: 12px;  animation-duration: 3.0s; animation-delay: -0.9s; }
+@keyframes laBadgeFloat {
+  from { transform: translateY(0px); }
+  to   { transform: translateY(-9px); }
+}
+/* b-mid needs separate so translateY(-50%) baseline is kept */
+.la-badge.b-mid { animation-name: laBadgeFloatMid; }
+@keyframes laBadgeFloatMid {
+  from { transform: translateY(calc(-50% + 0px));  }
+  to   { transform: translateY(calc(-50% - 9px));  }
+}
+
+/* ── 7. Logo icon animation ───────────────────────────────────── */
+.la-logo-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px; height: 46px;
+  border-radius: 13px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  margin-bottom: 14px;
+  font-size: 21px;
+  color: #fff;
+  animation: laLogoWiggle 3s ease-in-out infinite;
+  box-shadow: 0 4px 18px rgba(99,102,241,0.45);
+}
+@keyframes laLogoWiggle {
+  0%,100% { transform: rotate(0deg)   scale(1);    }
+  20%     { transform: rotate(-6deg)  scale(1.06); }
+  50%     { transform: rotate(5deg)   scale(1.04); }
+  75%     { transform: rotate(-3deg)  scale(1.02); }
+}
+
+/* ── 8. Form fields staggered slide-in ───────────────────────── */
+.login-input-box {
+  animation: laFieldIn 0.4s ease both;
+}
+.login-input-box:nth-child(1) { animation-delay: 0.05s; }
+.login-input-box:nth-child(2) { animation-delay: 0.12s; }
+.login-input-box:nth-child(3) { animation-delay: 0.19s; }
+.login-input-box:nth-child(4) { animation-delay: 0.26s; }
+.login-input-box:nth-child(5) { animation-delay: 0.33s; }
+@keyframes laFieldIn {
+  from { opacity: 0; transform: translateX(-14px); }
+  to   { opacity: 1; transform: translateX(0);     }
+}
+
+/* ── 9. Submit button ripple ──────────────────────────────────── */
+.la-ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.32);
+  width: 8px; height: 8px;
+  pointer-events: none;
+  transform: scale(0);
+  animation: laRippleOut 0.65s linear forwards;
+}
+@keyframes laRippleOut {
+  to { transform: scale(55); opacity: 0; }
+}
+
+/* ── 10. Progress sweep on submit ────────────────────────────── */
+.la-progress {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #6366f1, #a78bfa, #6366f1);
+  background-size: 200% 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.65s ease;
+  animation: laProgressShimmer 1.5s linear infinite paused;
+}
+.la-progress.active {
+  transform: scaleX(1);
+  animation-play-state: running;
+}
+@keyframes laProgressShimmer {
+  from { background-position: 100% 0; }
+  to   { background-position: -100% 0; }
+}
+
+/* ── 11. Success overlay ──────────────────────────────────────── */
+.la-success {
+  position: absolute; inset: 0; z-index: 30;
+  background: rgba(255,255,255,0.97);
+  display: none;
+  align-items: center; justify-content: center;
+  flex-direction: column; gap: 14px;
+  border-radius: 0 16px 16px 0;
+}
+.la-success.show {
+  display: flex;
+  animation: laFadeIn 0.3s ease;
+}
+@keyframes laFadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.la-check-ring {
+  width: 68px; height: 68px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  display: flex; align-items: center; justify-content: center;
+  animation: laCheckPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  box-shadow: 0 8px 24px rgba(34,197,94,0.4);
+}
+@keyframes laCheckPop {
+  from { transform: scale(0) rotate(-20deg); }
+  to   { transform: scale(1) rotate(0deg);   }
+}
+.la-check-ring i { color: #fff; font-size: 28px; }
+.la-success-name { font-size: 1.05rem; font-weight: 700; color: #1e293b; }
+.la-success-sub  { font-size: 0.8rem;  color: #64748b; }
+
+/* ── 12. Error shake ──────────────────────────────────────────── */
+@keyframes laShake {
+  0%,100% { transform: translateX(0);   }
+  18%     { transform: translateX(-7px);}
+  36%     { transform: translateX(7px); }
+  54%     { transform: translateX(-5px);}
+  72%     { transform: translateX(5px); }
+  90%     { transform: translateX(-2px);}
+}
+#login-error.la-shake { animation: laShake 0.42s ease; }
+
+/* ── 13. Tab switcher ─────────────────────────────────────────── */
+.la-tab-row {
+  display: flex;
+  border: 1.5px solid rgba(148,163,184,0.3);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.la-tab-btn {
+  flex: 1; padding: 9px;
+  border: none; background: transparent;
+  font-size: 0.85rem; font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background 0.22s, color 0.22s;
+  font-family: var(--font-sans, inherit);
+}
+.la-tab-btn.active {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #fff;
+}
+
+/* ── 14. Dark mode overrides for success overlay ─────────────── */
+body.dark .la-success { background: rgba(15, 23, 42, 0.97); }
+body.dark .la-success-name { color: #f1f5f9; }
+
+/* ── Dots bounce (left panel) ─────────────────────────────────── */
+.la-dots { display: flex; gap: 7px; justify-content: center; margin-top: 18px; position: relative; z-index: 2; }
+.la-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: rgba(255,255,255,0.5);
+  animation: laDotBounce 0.9s ease-in-out infinite;
+}
+.la-dot:nth-child(2) { animation-delay: 0.15s; }
+.la-dot:nth-child(3) { animation-delay: 0.30s; }
+@keyframes laDotBounce {
+  0%,80%,100% { transform: scale(1);   opacity: 0.5; }
+  40%         { transform: scale(1.55); opacity: 1;   }
+}

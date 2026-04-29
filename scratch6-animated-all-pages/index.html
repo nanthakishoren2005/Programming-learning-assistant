@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learnix — Master Coding Interactively</title>
+  <meta name="description"
+    content="Interactive programming learning platform. Master Python, HTML, and CSS with real runnable code, quizzes, and coding challenges.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=Fira+Code:wght@400;500&display=swap"
+    rel="stylesheet">
+
+  <!-- Prism.js Syntax Highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+
+  <!-- CodeMirror Editor -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- App Styles -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/code-blocks.css">
+  <link rel="stylesheet" href="css/screens.css">
+  <link rel="stylesheet" href="css/login-animations.css">
+  <link rel="stylesheet" href="css/bg-animations.css">
+</head>
+
+<body>
+
+  <!-- Top Navigation Bar -->
+  <nav class="top-bar" id="top-bar" style="display:none;">
+    <div class="logo">Learnix</div>
+    <div class="top-bar-nav">
+      <span class="nav-link" data-screen="#learning-module"> Learn</span>
+      <span class="nav-link" data-screen="#quiz"> Quiz</span>
+      <span class="nav-link" data-screen="#chatbot">AI Tutor</span>
+      <span class="nav-link" data-screen="#task-assignment"> Tasks</span>
+      <span class="nav-link" data-screen="#progress"> Progress</span>
+      <div class="theme-toggle" id="theme-toggle-top" title="Toggle Theme">
+        <div class="toggle-track">
+          <div class="toggle-thumb">
+            <i class="fa fa-sun"></i>
+          </div>
+        </div>
+      </div>
+      <span class="icon-btn" id="settings-btn" data-screen="#settings" title="Settings"><i class="fa fa-gear"></i></span>
+      <div class="profile-menu-wrapper">
+        <span class="profile-avatar-btn" id="profile-avatar-btn" title="Profile"></span>
+        <div class="dropdown" id="profileDropdown">
+          <div class="dropdown-item" id="openProfile">MY PROFILE</div>
+          <hr />
+          <div class="dropdown-item logout" id="dropdown-logout">LOG OUT</div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ====== LOGIN / SIGN UP ====== -->
+  <section id="login-screen" class="screen">
+
+    <!-- Particle layer (JS fills this) -->
+    <div id="la-particle-layer" style="position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0;"></div>
+
+    <div class="login-card" id="login-card">
+
+      <!-- ── LEFT PANEL ── -->
+      <div class="login-left" style="align-items:center;">
+        <!-- animated bg layers -->
+        <div class="la-grid"></div>
+        <div class="la-orb la-orb-1"></div>
+        <div class="la-orb la-orb-2"></div>
+
+        <!-- floating status badges -->
+        <div class="la-badge b-top">
+          <div class="la-badge-dot" style="background:#22c55e;box-shadow:0 0 6px #22c55e;"></div>
+          AI Feedback Live
+        </div>
+        <div class="la-badge b-mid">
+          <div class="la-badge-dot" style="background:#f59e0b;box-shadow:0 0 6px #f59e0b;"></div>
+          +42 XP earned
+        </div>
+        <div class="la-badge b-bottom">
+          <div class="la-badge-dot" style="background:#a78bfa;box-shadow:0 0 6px #a78bfa;"></div>
+          Python · Level 4
+        </div>
+
+        <!-- Lottie-style desk illustration -->
+        <div class="la-illustration">
+          <svg viewBox="0 0 210 210" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+
+            <!-- sparkle stars -->
+            <g class="la-star" style="transform-origin:28px 42px">
+              <polygon points="28,36 30,40 34,40 31,43 32,47 28,44 24,47 25,43 22,40 26,40" fill="rgba(255,255,255,0.85)" />
+            </g>
+            <g class="la-star" style="transform-origin:185px 55px">
+              <polygon points="185,50 186.5,53.5 190,53.5 187.5,55.8 188.5,59 185,57 181.5,59 182.5,55.8 180,53.5 183.5,53.5" fill="rgba(255,255,255,0.75)" />
+            </g>
+            <g class="la-star" style="transform-origin:175px 155px">
+              <polygon points="175,151 176,154 179,154 177,156 178,159 175,157 172,159 173,156 171,154 174,154" fill="rgba(255,255,255,0.65)" />
+            </g>
+
+            <!-- desk surface -->
+            <rect x="18" y="148" width="174" height="10" rx="5" fill="rgba(255,255,255,0.22)" />
+
+            <!-- monitor stand -->
+            <rect x="97" y="118" width="16" height="30" rx="4" fill="rgba(255,255,255,0.25)" />
+            <rect x="82" y="145" width="46" height="7" rx="3.5" fill="rgba(255,255,255,0.2)" />
+
+            <!-- monitor bezel -->
+            <rect x="42" y="52" width="126" height="70" rx="10" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.45)" stroke-width="1.5" />
+
+            <!-- monitor screen -->
+            <rect x="48" y="57" width="114" height="58" rx="6" class="la-screen" fill="rgba(10,12,30,0.9)" />
+
+            <!-- code lines inside screen -->
+            <g class="la-screen">
+              <g class="la-code-line">
+                <rect x="55" y="67" width="16" height="5" rx="2.5" fill="#f59e0b" opacity="0.95"/>
+                <rect x="75" y="67" width="38" height="5" rx="2.5" fill="rgba(255,255,255,0.55)"/>
+              </g>
+              <g class="la-code-line">
+                <rect x="60" y="77" width="11" height="5" rx="2.5" fill="#6366f1" opacity="0.95"/>
+                <rect x="75" y="77" width="28" height="5" rx="2.5" fill="rgba(255,255,255,0.55)"/>
+                <rect x="107" y="77" width="14" height="5" rx="2.5" fill="#22c55e" opacity="0.9"/>
+              </g>
+              <g class="la-code-line">
+                <rect x="60" y="87" width="22" height="5" rx="2.5" fill="rgba(255,255,255,0.55)"/>
+                <rect x="86" y="87" width="20" height="5" rx="2.5" fill="#a78bfa" opacity="0.9"/>
+              </g>
+              <g class="la-code-line">
+                <rect x="60" y="97" width="30" height="5" rx="2.5" fill="rgba(255,255,255,0.55)"/>
+                <rect x="94" y="97" width="14" height="5" rx="2.5" fill="#22c55e" opacity="0.9"/>
+              </g>
+              <!-- blinking cursor -->
+              <rect x="55" y="108" width="2.5" height="8" rx="1.25" fill="#fff" class="la-cursor"/>
+            </g>
+
+            <!-- notification ping on monitor corner -->
+            <circle cx="155" cy="60" r="6" fill="#ef4444" />
+            <circle cx="155" cy="60" r="6" fill="#ef4444" class="la-ping" />
+
+            <!-- character body (bobbing) -->
+            <g class="la-char">
+              <!-- torso -->
+              <rect x="84" y="155" width="42" height="36" rx="8" fill="rgba(255,255,255,0.3)" />
+              <!-- arms on desk -->
+              <rect x="52" y="152" width="36" height="12" rx="6" fill="rgba(255,255,255,0.25)" />
+              <rect x="122" y="152" width="36" height="12" rx="6" fill="rgba(255,255,255,0.25)" />
+              <!-- hands -->
+              <circle cx="62"  cy="158" r="7" fill="rgba(255,255,255,0.35)" />
+              <circle cx="148" cy="158" r="7" fill="rgba(255,255,255,0.35)" />
+
+              <!-- head (tilting) -->
+              <g class="la-head" style="transform-origin:105px 143px">
+                <circle cx="105" cy="136" r="22" fill="rgba(255,255,255,0.35)" />
+                <!-- eyes -->
+                <circle cx="97" cy="133" r="3.5" fill="rgba(255,255,255,0.9)" />
+                <circle cx="113" cy="133" r="3.5" fill="rgba(255,255,255,0.9)" />
+                <!-- pupils -->
+                <circle cx="98" cy="134" r="1.8" fill="#4f46e5" />
+                <circle cx="114" cy="134" r="1.8" fill="#4f46e5" />
+                <!-- smile -->
+                <path d="M99 141 Q105 146 111 141" stroke="rgba(255,255,255,0.9)" stroke-width="2" fill="none" stroke-linecap="round"/>
+                <!-- hair -->
+                <path d="M84 130 Q90 114 105 114 Q120 114 126 130" fill="rgba(255,255,255,0.25)" />
+              </g>
+            </g>
+
+            <!-- coffee cup on desk -->
+            <g style="transform-origin:170px 148px">
+              <rect x="162" y="138" width="16" height="14" rx="3" fill="rgba(255,255,255,0.28)" />
+              <rect x="162" y="138" width="16" height="5" rx="2" fill="rgba(255,255,255,0.18)" />
+              <path d="M178 142 Q184 142 184 147 Q184 152 178 152" stroke="rgba(255,255,255,0.3)" stroke-width="2" fill="none"/>
+              <!-- steam wisps -->
+              <g>
+                <path d="M166 137 Q167 133 166 129" class="la-steam" stroke="rgba(255,255,255,0.55)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                <path d="M170 136 Q171 132 170 128" class="la-steam" stroke="rgba(255,255,255,0.45)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                <path d="M174 137 Q175 133 174 129" class="la-steam" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+              </g>
+            </g>
+
+          </svg>
+        </div>
+
+        <!-- text below illustration -->
+        <h2 style="position:relative;z-index:2;text-align:center;">Program Learning Assistant 🚀</h2>
+        <p style="position:relative;z-index:2;text-align:center;">Master programming with AI-powered learning</p>
+
+        <!-- bouncing dots -->
+        <div class="la-dots">
+          <div class="la-dot"></div>
+          <div class="la-dot"></div>
+          <div class="la-dot"></div>
+        </div>
+      </div>
+
+      <!-- ── RIGHT PANEL ── -->
+      <div class="login-right" id="login-form-panel" style="position:relative;">
+
+        <!-- progress sweep bar -->
+        <div class="la-progress" id="la-progress"></div>
+
+        <!-- logo icon -->
+        <div class="la-logo-icon"><i class="fa-solid fa-code"></i></div>
+
+        <h2 id="login-title">Welcome</h2>
+        <p class="login-sub" id="login-sub">Sign in to continue your journey</p>
+
+        <!-- tab switcher -->
+        <div class="la-tab-row" id="la-tab-row">
+          <button class="la-tab-btn active" id="la-tab-login">Sign In</button>
+          <button class="la-tab-btn"        id="la-tab-signup">Create Account</button>
+        </div>
+
+        <p id="login-error"></p>
+
+        <!-- Login Fields -->
+        <div id="login-fields">
+          <div class="login-input-box">
+            <input type="email" id="login-email" placeholder="Email" autocomplete="email">
+            <i class="fa fa-envelope"></i>
+          </div>
+          <div class="login-input-box">
+            <input type="password" id="login-password" placeholder="Password" autocomplete="current-password">
+            <i class="fa fa-eye" id="login-eye"></i>
+          </div>
+          <button class="login-btn" id="loginBtn" style="position:relative;overflow:hidden;">Sign In</button>
+          <div class="auth-divider">or</div>
+          <div class="login-footer">
+            Don't have an account? <span id="show-signup">Create one free</span>
+          </div>
+        </div>
+
+        <!-- Signup Fields -->
+        <div id="signup-fields" style="display:none;">
+          <div style="display:flex;gap:10px;">
+            <div class="login-input-box" style="flex:1;">
+              <input type="text" id="signup-firstname" placeholder="First Name">
+              <i class="fa fa-user"></i>
+            </div>
+            <div class="login-input-box" style="flex:1;">
+              <input type="text" id="signup-lastname" placeholder="Last Name">
+              <i class="fa fa-user"></i>
+            </div>
+          </div>
+          <div class="login-input-box">
+            <input type="email" id="signup-email" placeholder="Email">
+            <i class="fa fa-envelope"></i>
+          </div>
+          <div class="login-input-box">
+            <input type="text" id="signup-username" placeholder="Username">
+            <i class="fa fa-at"></i>
+          </div>
+          <div class="login-input-box">
+            <input type="password" id="signup-password" placeholder="Password">
+            <i class="fa fa-lock"></i>
+          </div>
+          <button class="login-btn" id="signupBtn" style="position:relative;overflow:hidden;">Create Account</button>
+          <div class="auth-divider">or</div>
+          <div class="login-footer">
+            Already have an account? <span id="show-login">Sign in</span>
+          </div>
+        </div>
+
+        <!-- Success overlay -->
+        <div class="la-success" id="la-success">
+          <div class="la-check-ring"><i class="fa fa-check"></i></div>
+          <div class="la-success-name" id="la-success-name"></div>
+          <div class="la-success-sub">Redirecting to your dashboard…</div>
+        </div>
+
+      </div><!-- end login-right -->
+    </div><!-- end login-card -->
+  </section>
+
+  <!-- ====== PROFILE SLIDE-IN PANEL ====== -->
+  <div id="profile-panel-overlay" class="profile-panel-overlay"></div>
+  <div class="profile-panel" id="profilePanel">
+    <div class="panel-header">
+      <h2>Profile</h2>
+      <span class="panel-close" id="closeProfile">✖</span>
+    </div>
+    <div class="profile-content" id="profile-panel-content">
+      <!-- Dynamic content rendered by JS -->
+    </div>
+  </div>
+
+  <!-- ====== SCREEN 1: WELCOME ====== -->
+  <section id="welcome" class="screen">
+    <div class="bg-anim-layer" id="welcome-bg-anim"></div>
+    <div class="hero-content">
+      <h1>Learnix</h1>
+      <p class="hero-tagline">Learn to code, interactively. Master Python, HTML & CSS with real exercises, instant
+        feedback, and hands-on projects.</p>
+      <button class="btn-primary" id="welcome-cta">
+        Start Learning
+        <span class="icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M13 5l7 7-7 7"/>
+          </svg>
+        </span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ====== SCREEN 2: ONBOARDING ====== -->
+  <section id="onboarding" class="screen">
+    <div class="bg-anim-layer" id="onboarding-bg-anim"></div>
+    <div class="onboarding-wrap">
+      <h2 class="hero-title">Welcome to Learnix</h2>
+      <div class="input-group">
+        <label for="user-name">What's your name?</label>
+        <input type="text" class="input-field" id="user-name" placeholder="Enter your name" maxlength="30">
+      </div>
+
+      <button class="btn-primary continue-btn" id="onboarding-continue" disabled>
+        Continue
+        <span class="icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M13 5l7 7-7 7"/>
+          </svg>
+        </span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ====== SCREEN 3: LANGUAGE SELECT ====== -->
+  <section id="language-select" class="screen">
+    <div class="bg-anim-layer" id="language-select-bg-anim"></div>
+    <h2>Choose a language to learn</h2>
+    <p style="color:var(--text-secondary);">Pick one to start — you can switch anytime.</p>
+    <div class="language-grid">
+
+      <div class="lang-card" data-lang="python">
+        <div class="lang-icon python-icon">
+          <svg viewBox="0 0 256 255" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid">
+            <defs>
+              <linearGradient id="py1" x1="12.96%" y1="12.07%" x2="79.64%" y2="78.18%">
+                <stop offset="0%" stop-color="#387EB8" />
+                <stop offset="100%" stop-color="#366994" />
+              </linearGradient>
+              <linearGradient id="py2" x1="19.13%" y1="20.58%" x2="90.43%" y2="88.01%">
+                <stop offset="0%" stop-color="#FFE052" />
+                <stop offset="100%" stop-color="#FFC331" />
+              </linearGradient>
+            </defs>
+            <path
+              d="M126.916.072c-64.832 0-60.784 28.115-60.784 28.115l.072 29.128h61.868v8.745H41.631S.145 61.355.145 126.77c0 65.417 36.21 63.097 36.21 63.097h21.61v-30.356s-1.165-36.21 35.632-36.21h61.362s34.475.557 34.475-33.319V33.97S194.67.072 126.916.072zM92.802 19.66a11.12 11.12 0 0 1 11.13 11.13 11.12 11.12 0 0 1-11.13 11.13 11.12 11.12 0 0 1-11.13-11.13 11.12 11.12 0 0 1 11.13-11.13z"
+              fill="url(#py1)" />
+            <path
+              d="M128.757 254.126c64.832 0 60.784-28.115 60.784-28.115l-.072-29.127H127.6v-8.745h86.441s41.486 4.705 41.486-60.712c0-65.416-36.21-63.096-36.21-63.096h-21.61v30.355s1.165 36.21-35.632 36.21h-61.362s-34.475-.557-34.475 33.32v56.013s-5.235 33.897 62.518 33.897zm34.114-19.586a11.12 11.12 0 0 1-11.13-11.13 11.12 11.12 0 0 1 11.13-11.131 11.12 11.12 0 0 1 11.13 11.13 11.12 11.12 0 0 1-11.13 11.13z"
+              fill="url(#py2)" />
+          </svg>
+        </div>
+        <h3>Python</h3>
+        <p>Variables, loops, functions, OOP, data structures</p>
+        <span class="tag">Beginner friendly</span>
+      </div>
+
+      <div class="lang-card" data-lang="html">
+        <div class="lang-icon html-icon">
+          <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+            <path d="M71.357 460.819L30.272 0h451.456l-41.129 460.746L255.724 512z" fill="#E34F26" />
+            <path d="M256 472.277l157.927-43.76 35.201-394.428H256z" fill="#EF652A" />
+            <path
+              d="M256 208.177h-79.1l-5.468-61.231H256V85.824H108.927l1.437 16.09 14.733 165.14H256zm0 142.37l-.27.074-66.468-17.952-4.252-47.6h-61.371l8.367 93.79 123.724 34.322.27-.074z"
+              fill="#fff" />
+            <path
+              d="M255.843 208.177v61.122h73.798l-6.952 77.664-66.846 18.056v63.28l122.886-34.036 .906-10.166 14.09-157.92H255.843zm0-122.353v61.122h142.162l1.175-13.163 2.673-29.87 1.437-18.089z"
+              fill="#EBEBEB" />
+          </svg>
+        </div>
+        <h3>HTML</h3>
+        <p>Structure, semantics, forms, accessibility, SEO basics</p>
+        <span class="tag">Start here</span>
+      </div>
+
+      <div class="lang-card" data-lang="css">
+        <div class="lang-icon css-icon">
+          <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+            <path d="M71.357 460.819L30.272 0h451.456l-41.129 460.746L255.724 512z" fill="#264DE4" />
+            <path d="M256 472.277l157.927-43.76 35.201-394.428H256z" fill="#2965F1" />
+            <path
+              d="M256 208.177h-79.1l-5.468-61.231H256V85.824H108.927l1.437 16.09 14.733 165.14H256zm0 142.37l-.27.074-66.468-17.952-4.252-47.6h-61.371l8.367 93.79 123.724 34.322.27-.074z"
+              fill="#EBEBEB" />
+            <path
+              d="M255.843 208.177v61.122h73.798l-6.952 77.664-66.846 18.056v63.28l122.886-34.036.906-10.166 14.09-157.92H255.843zm0-122.353v61.122h142.162l1.175-13.163 2.673-29.87 1.437-18.089z"
+              fill="#fff" />
+          </svg>
+        </div>
+        <h3>CSS</h3>
+        <p>Selectors, Flexbox, Grid, animations, responsive design</p>
+        <span class="tag">Visual &amp; creative</span>
+      </div>
+
+      <div class="lang-card" data-lang="javascript">
+        <div class="lang-icon js-icon">
+          <svg viewBox="0 0 630 630" xmlns="http://www.w3.org/2000/svg">
+            <rect width="630" height="630" fill="#f7df1e"/>
+            <path d="m423.2 492.19c12.69 20.72 29.2 35.95 58.4 35.95 24.53 0 40.2-12.26 40.2-29.2 0-20.3-16.1-27.49-43.1-39.3l-14.8-6.35c-42.72-18.2-71.1-41-71.1-89.2 0-44.4 33.83-78.23 86.7-78.23 37.64 0 64.7 13.1 84.2 47.4l-46.1 29.6c-10.15-18.2-21.1-25.37-38.1-25.37-17.34 0-28.33 9.3-28.33 21.1 0 16.5 10.15 22.8 33.83 33l14.8 6.35c50.32 21.6 84.6 40.2 84.6 94.7 0 54.13-40.6 81.67-96.8 81.67-54.13 0-88-26.64-103.2-60.35l47.5-29.6zm-233.02-9.21c9.3 16.5 17.76 30.45 38.1 30.45 19.45 0 31.72-7.61 31.72-37.2v-201.3h59.2v202.1c0 61.3-35.94 89.2-88.4 89.2-47.4 0-74.85-24.53-88.81-54.13l48.19-29.12z" fill="#000"/>
+          </svg>
+        </div>
+        <h3>JavaScript</h3>
+        <p>DOM manipulation, events, async/await, APIs, web apps</p>
+        <span class="tag">Interactive Web</span>
+      </div>
+
+    </div>
+    <button class="btn-primary" id="confirm-lang" disabled>
+      Continue
+      <span class="icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M13 5l7 7-7 7"/>
+        </svg>
+      </span>
+    </button>
+  </section>
+
+  <!-- ====== SCREEN 4: LEVEL SELECT ====== -->
+  <section id="level-select" class="screen">
+    <div class="bg-anim-layer" id="level-select-bg-anim"></div>
+    <h2>Select your level</h2>
+    <div class="level-path" id="level-path"></div>
+    <div class="level-description" id="level-desc">
+      <p id="level-desc-text">Select a level to see what you'll learn.</p>
+    </div>
+    <button class="btn-primary" id="confirm-level" disabled style="margin-top:var(--space-xl);">
+      Start Learning
+      <span class="icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M13 5l7 7-7 7"/>
+        </svg>
+      </span>
+    </button>
+  </section>
+
+  <!-- ====== SCREEN 5: LEARNING MODULE ====== -->
+  <section id="learning-module" class="screen">
+    <div class="bg-anim-layer" id="learning-module-bg-anim"></div>
+    <div class="lesson-body">
+      <!-- Dynamic lesson content rendered by JS -->
+    </div>
+  </section>
+
+
+
+
+  <!-- ====== SCREEN 7: QUIZ ====== -->
+  <section id="quiz" class="screen">
+    <div class="bg-anim-layer" id="quiz-bg-anim"></div>
+    <div class="quiz-wrap">
+      <!-- Dynamic quiz content rendered by JS -->
+    </div>
+  </section>
+
+  <!-- ====== SCREEN 8: PROGRESS ====== -->
+  <section id="progress-screen" class="screen">
+    <div class="bg-anim-layer" id="progress-bg-anim"></div>
+    <div class="progress-wrap">
+      <h2>Your Progress</h2>
+      <div class="stats-grid"></div>
+
+      <!-- Interactive chart tabs -->
+      <div class="chart-tabs">
+        <button class="chart-tab active" data-chart="scores">📈 Quiz Scores</button>
+        <button class="chart-tab" data-chart="activity">📅 Weekly Activity</button>
+        <button class="chart-tab" data-chart="breakdown">🎯 Activity Breakdown</button>
+      </div>
+
+      <div class="chart-container" id="chart-scores">
+        <canvas id="progress-chart"></canvas>
+      </div>
+      <div class="chart-container" id="chart-activity" style="display:none;">
+        <canvas id="activity-chart"></canvas>
+      </div>
+      <div class="chart-container" id="chart-breakdown" style="display:none;">
+        <div style="max-width:360px;margin:0 auto;">
+          <canvas id="breakdown-chart"></canvas>
+        </div>
+      </div>
+
+      <div class="progress-milestones">
+        <h3>Milestones</h3>
+        <div id="milestones-list"></div>
+      </div>
+
+      <div style="margin-top:var(--space-xl);text-align:center;">
+        <button class="btn-secondary" onclick="location.hash='#learning-module'">Continue Learning</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== SCREEN 9: CHATBOT ====== -->
+  <section id="chatbot" class="screen">
+    <div class="bg-anim-layer" id="chatbot-bg-anim"></div>
+    <div class="chat-wrap">
+      <div class="chat-messages" id="chat-messages"></div>
+      <div class="starter-chips">
+        <button class="chip">Explain Python lists</button>
+        <button class="chip">What is the box model in CSS?</button>
+        <button class="chip">Why is my for loop not working?</button>
+        <button class="chip">Show me an HTML form example</button>
+      </div>
+      <div class="chat-input-bar">
+        <input type="text" id="chat-input" placeholder="Ask your coding question..." autocomplete="off">
+        <button class="btn-primary" id="chat-send" style="padding:0.6rem 1.2rem;">Send</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== SCREEN 10: TASK ASSIGNMENT ====== -->
+  <section id="task-assignment" class="screen">
+    <div class="bg-anim-layer" id="task-assignment-bg-anim"></div>
+    <div class="task-wrap">
+      <h2>Coding Challenges</h2>
+      <p style="color:var(--text-secondary);margin-bottom:var(--space-sm);">Put your skills to the test with real coding
+        tasks.</p>
+      <div class="task-grid"></div>
+      <div style="margin-top:var(--space-xl);text-align:center;">
+        <button class="btn-secondary" onclick="location.hash='#learning-module'">
+          <span class="icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+          </span>
+          Back to Lessons
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== SCREEN 11: SUBMIT TASK ====== -->
+  <section id="submit-task" class="screen">
+    <div class="bg-anim-layer" id="submit-task-bg-anim"></div>
+    <div class="submit-wrap">
+      <!-- Dynamic content rendered by JS -->
+    </div>
+  </section>
+
+  <!-- ====== SCREEN 12: SETTINGS ====== -->
+  <section id="settings" class="screen">
+    <div class="bg-anim-layer" id="settings-bg-anim"></div>
+    <div class="settings-wrap">
+      <!-- Dynamic content rendered by JS -->
+    </div>
+  </section>
+
+  <!-- ===== External Libraries ===== -->
+  <!-- Anime.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+
+  <!-- Prism.js Syntax Highlighting -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+
+  <!-- CodeMirror Editor -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/python/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/htmlmixed/htmlmixed.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/css/css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
+
+  <!-- Chart.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+
+  <!-- Pyodide (loaded lazily by pyodide-runner.js, but we need the loader) -->
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js"></script>
+
+  <!-- App Entry -->
+  <script type="module" src="js/app.js"></script>
+
+</body>
+
+</html>
