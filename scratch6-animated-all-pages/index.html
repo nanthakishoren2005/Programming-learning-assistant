@@ -32,6 +32,7 @@
   <link rel="stylesheet" href="css/screens.css">
   <link rel="stylesheet" href="css/login-animations.css">
   <link rel="stylesheet" href="css/bg-animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
 </head>
 
 <body>
@@ -39,12 +40,18 @@
   <!-- Top Navigation Bar -->
   <nav class="top-bar" id="top-bar" style="display:none;">
     <div class="logo">Learnix</div>
-    <div class="top-bar-nav">
+
+    <!-- Collapsible nav links (hamburger menu on mobile) -->
+    <div class="top-bar-nav" id="top-bar-nav">
       <span class="nav-link" data-screen="#learning-module"> Learn</span>
       <span class="nav-link" data-screen="#quiz"> Quiz</span>
       <span class="nav-link" data-screen="#chatbot">AI Tutor</span>
       <span class="nav-link" data-screen="#task-assignment"> Tasks</span>
       <span class="nav-link" data-screen="#progress"> Progress</span>
+    </div>
+
+    <!-- Always-visible actions (never hidden on mobile) -->
+    <div class="top-bar-actions">
       <div class="theme-toggle" id="theme-toggle-top" title="Toggle Theme">
         <div class="toggle-track">
           <div class="toggle-thumb">
@@ -61,6 +68,11 @@
           <div class="dropdown-item logout" id="dropdown-logout">LOG OUT</div>
         </div>
       </div>
+      <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </nav>
 

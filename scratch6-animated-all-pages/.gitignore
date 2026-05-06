@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+env/
+
+# Database
+*.db
+instance/
+
+# IDE
+.vscode/
+.idea/
+
+# Vercel (no longer needed)
+.vercel/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Scratch / helper scripts (not needed on server)
+scratch/
+generate_report_pdf.py
+generate_lessons.py
+generate_quizzes.py
+generate_tasks.py
+insert_all_css_lessons.py
+insert_all_html_lessons.py
+insert_all_python_lessons.py
+backend_report.md

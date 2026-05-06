@@ -2,7 +2,7 @@
 // API Service — Centralized Backend Connectivity
 // ============================================
 
-const BASE_URL = 'https://learnix-backend-ven3.onrender.com';
+const BASE_URL = '';
 
 export const api = {
   // Auth

@@ -48,14 +48,43 @@ document.addEventListener('DOMContentLoaded', () => {
     link.addEventListener('click', () => {
       const screen = link.dataset.screen;
       if (screen) window.location.hash = screen;
+      // Close mobile menu on nav
+      closeMobileMenu();
     });
   });
+
+  // ---- Mobile Hamburger Menu ----
+  const mobileToggle = document.getElementById('mobile-menu-toggle');
+  const topBarNav = document.getElementById('top-bar-nav');
+
+  function closeMobileMenu() {
+    if (mobileToggle && topBarNav) {
+      mobileToggle.classList.remove('active');
+      topBarNav.classList.remove('mobile-open');
+    }
+  }
+
+  if (mobileToggle && topBarNav) {
+    mobileToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      mobileToggle.classList.toggle('active');
+      topBarNav.classList.toggle('mobile-open');
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.top-bar')) {
+        closeMobileMenu();
+      }
+    });
+  }
 
   // Settings button
   const settingsBtn = document.getElementById('settings-btn');
   if (settingsBtn) {
     settingsBtn.addEventListener('click', () => {
       window.location.hash = '#settings';
+      closeMobileMenu();
     });
   }
 
@@ -78,12 +107,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // MY PROFILE opens the slide-in panel
     document.getElementById('openProfile')?.addEventListener('click', () => {
       profileDropdown.classList.remove('show');
+      closeMobileMenu();
       profile.init();
     });
 
     // SIGN-OUT
     document.getElementById('dropdown-logout')?.addEventListener('click', () => {
       profileDropdown.classList.remove('show');
+      closeMobileMenu();
       import('./state.js').then(({ resetState }) => {
         resetState();
         window.location.hash = '#login';
